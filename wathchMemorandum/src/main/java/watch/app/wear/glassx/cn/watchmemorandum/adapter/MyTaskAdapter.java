@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import watch.app.wear.glassx.cn.watchmemorandum.R;
 import watch.app.wear.glassx.cn.watchmemorandum.Utils;
@@ -21,7 +22,7 @@ public class MyTaskAdapter extends BaseAdapter
     private TextView mTaskTextView;
     private TextView mTimeTextView;
     private LayoutInflater mLayoutInflater;
-    ArrayList<HashMap<String, String>> list = Utils.getList();
+
 
 
 
@@ -34,19 +35,20 @@ public class MyTaskAdapter extends BaseAdapter
     public int getCount()
     {
 
-        if(list!=null)
+        if(Utils.getList()!=null)
         {
-          return list.size();
+          return Utils.getList().size();
         }else
         {
-            return 4;
+            return 3;
         }
     }
 
     @Override
     public Object getItem(int position)
     {
-        return position;
+
+        return Utils.getList().get(position);
     }
 
     @Override
@@ -62,8 +64,8 @@ public class MyTaskAdapter extends BaseAdapter
         mTaskTextView = (TextView) inflate.findViewById(R.id.task_text);
         mTimeTextView = (TextView) inflate.findViewById(R.id.task_text);
 
-
-
+        mTaskTextView.setText(Utils.getItem(position).get("content"));
+        mTimeTextView.setText(Utils.getItem(position).get("datetime"));
         return inflate;
     }
 }

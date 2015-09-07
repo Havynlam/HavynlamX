@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         this(context, name, null, version);
     }
     public DatabaseHelper(Context context, String name) {
-        this(context, name, 1);
+        this( context, name, 1);
     }
 
         @Override

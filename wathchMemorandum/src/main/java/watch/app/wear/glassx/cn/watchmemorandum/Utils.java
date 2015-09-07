@@ -116,7 +116,8 @@ public class Utils
             case 7:
                 day = "六";
         }
-        return calendar.get(Calendar.YEAR) + "年" + format(calendar.get(Calendar.MONTH) + 1) + "月" + calendar.get(Calendar.DAY_OF_WEEK) + "日" + "  星期" + day;
+        return calendar.get(Calendar.YEAR) + "年" + format(calendar.get(Calendar.MONTH) + 1) + "月" +
+                calendar.get(Calendar.DAY_OF_MONTH) + "日" + "  星期" + day;
     }
 
     public static String timeTransfer(int i)
@@ -132,7 +133,9 @@ public class Utils
         String timePast = time.toString().substring(9, 13);
         long tempDate = Long.parseLong(dateNow) - Long.parseLong(datePast);
         long tempTime = Long.parseLong(timeNow) - Long.parseLong(timePast);
-        return tempDate == 0L ? timePast.substring(0, 2) + ":" + timePast.substring(2, 4) : (tempDate == 1L ? "昨天" : (tempDate >= 2L ? datePast.substring(4, 6) + "/" + datePast.substring(6, 8) : null));
+        return tempDate == 0L ? timePast.substring(0, 2) + ":" +
+                timePast.substring(2, 4) : (tempDate == 1L ? "昨天" : (tempDate >= 2L ? datePast.substring(4, 6) + "/" +
+                datePast.substring(6, 8) : null));
     }
 
     public static String timeTransfer(String i)
