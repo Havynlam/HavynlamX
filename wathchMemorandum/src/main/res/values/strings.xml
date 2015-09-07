@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WatchMemorandum</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="task">暂时还没有提醒</string>
+</resources>
