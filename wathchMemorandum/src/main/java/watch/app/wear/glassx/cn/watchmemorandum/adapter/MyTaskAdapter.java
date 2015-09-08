@@ -35,13 +35,16 @@ public class MyTaskAdapter extends BaseAdapter
     public int getCount()
     {
 
-        if(Utils.getList()!=null)
-        {
-          return Utils.getList().size();
-        }else
-        {
-            return 3;
-        }
+//        if(Utils.getList()!=null)
+//        {
+//          return Utils.getList().size();
+//        }else
+//        {
+//            return 3;
+//        }
+
+        return 3;
+
     }
 
     @Override
@@ -64,8 +67,8 @@ public class MyTaskAdapter extends BaseAdapter
         mTaskTextView = (TextView) inflate.findViewById(R.id.task_text);
         mTimeTextView = (TextView) inflate.findViewById(R.id.task_text);
 
-        mTaskTextView.setText(Utils.getItem(position).get("content"));
-        mTimeTextView.setText(Utils.getItem(position).get("datetime"));
+//        mTaskTextView.setText(Utils.getItem(position).get("content"));
+//        mTimeTextView.setText(Utils.getItem(position).get("datetime"));
         return inflate;
     }
 }

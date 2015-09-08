@@ -11,10 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 
 import watch.app.wear.glassx.cn.watchmemorandum.adapter.MyTaskAdapter;
 import watch.app.wear.glassx.cn.watchmemorandum.sqlite.DatabaseHelper;

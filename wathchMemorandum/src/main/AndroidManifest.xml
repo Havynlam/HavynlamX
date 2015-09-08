@@ -6,6 +6,15 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    //读设备 IMEI
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    //联网
+    <uses-permission android:name="android.permission.INTERNET" />
+    //获取网络状态
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
