@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="oBackgroundColor">#00c752</color>
+    <color name="cBackgroundColor">#ff2458</color>
+    <color name="remindColor">#87ffffff</color>
+    <color name="timeBackgroundColor">#1a1a1a</color>
+    <color name="timeColor">#54ffffff</color>
+
+
+
+    <color name="switchBackgroundColor">#313131</color>
+
+
+
+
+
+
+</resources>

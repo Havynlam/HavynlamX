@@ -1,1 +1,1 @@
-include ':mobile', ':wear', 'wathchMemorandum'
+include ':mobile', ':wear', ':watchsedentary', 'wathchMemorandum'

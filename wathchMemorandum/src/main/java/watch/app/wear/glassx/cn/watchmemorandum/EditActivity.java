@@ -1,18 +1,15 @@
 package watch.app.wear.glassx.cn.watchmemorandum;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.PersistableBundle;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.sogou.speech.offlinelistener.OutsideCallListener;
@@ -38,8 +35,6 @@ public class EditActivity extends WearableActivity implements OutsideCallListene
     // useful parameters for CoreControl
     CoreControl mControl = null;
     private boolean mIsLast = false;// 识别结束标记
-
-
     private static final String SOGOU_OFFLINE_SERVICE = "http://dl.pinyin.sogou.com/wapdl/offlinespeech/service.apk";
     private static final int MSG_ON_SERVICE_CONNECTED = 0;
     private static final int MSG_ON_FINISH_INIT = 1;
@@ -181,8 +176,7 @@ public class EditActivity extends WearableActivity implements OutsideCallListene
         // initialize CoreControl
         Context mContext = getApplicationContext();
         TelephonyManager mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        mControl = new CoreControl(mContext, mTelephonyManager, appId,
-                                   accessKey);
+        mControl = new CoreControl(mContext, mTelephonyManager, appId,accessKey);
         mControl.setmListener(EditActivity.this);
         mControl.onInitializeService();    //报错
     }
