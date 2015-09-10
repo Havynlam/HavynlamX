@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">WatchSedentary</string>
     <string name="hello_world">Hello World!</string>
-    <string name="Remind">不提醒</string>
+    <string name="cRemind">不提醒</string>
+    <string name="oRemind">提醒已打开</string>
+
     <string name="timeText">周一至周五 9：00-18：00</string>
     <string name="setTime">久坐一小时提醒</string>
 </resources>
