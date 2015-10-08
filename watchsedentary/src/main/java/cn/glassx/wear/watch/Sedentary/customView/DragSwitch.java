@@ -109,6 +109,11 @@ public class DragSwitch extends View implements View.OnTouchListener
         nowStatus = checked;
     }
 
+    public boolean isChecked()
+    {
+        return nowStatus;
+    }
+
     public interface OnChangedListener {
         void onChanged(DragSwitch dragSwitch, boolean checkState);
     }

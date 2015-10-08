@@ -9,11 +9,9 @@ import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
-
 import cn.glassx.wear.watch.Sedentary.customView.DragSwitch;
 import cn.glassx.wear.watch.Sedentary.receiver.AlarmReceiver;
 
@@ -40,15 +38,30 @@ public class MainActivity extends WearableActivity
 
 
     }
+    private void initView()
+    {
+        mContainerView = (BoxInsetLayout) findViewById(R.id.container);
+        mTextView = (TextView) findViewById(R.id.text);
+        mSwitch = (DragSwitch) findViewById(R.id.sedentarySc);
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.sedentaryBg);
 
+    }
     @SuppressWarnings("deprecation")
     private void initData()
-
     {
-//        mSharedPreferences=getSharedPreferences("config", MODE_PRIVATE);
-//        final SharedPreferences.Editor edit = mSharedPreferences.edit();
-//        edit.putBoolean("mToggle", mToggle);
-        mSwitch.setChecked(false);
+        mSharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+        final SharedPreferences.Editor edit = mSharedPreferences.edit();
+
+        mSwitch.setChecked(mSharedPreferences.getBoolean("mToggle", mToggle));
+        if (mSharedPreferences.getBoolean("mToggle", mToggle))
+        {
+            setStatus(R.color.oBackgroundColor, R.string.oRemind);
+            setTime();
+        }else
+        {
+            setStatus(R.color.cBackgroundColor, R.string.cRemind);
+        }
+
         mSwitch.setOnChangedListener(new DragSwitch.OnChangedListener()
         {
             @Override
@@ -56,17 +69,18 @@ public class MainActivity extends WearableActivity
             {
                 if (checkState)
                 {
-                    mToggle=true;
-                    mRelativeLayout.setBackgroundColor(getResources().getColor(R.color.oBackgroundColor));
-                    mTextView.setText(getResources().getString(R.string.oRemind));
-
+                    mToggle = true;
+                    edit.putBoolean("mToggle", mToggle);
+                    edit.commit();
+                    setStatus(R.color.oBackgroundColor, R.string.oRemind);
                     dayOfWeek();
 
                 } else
                 {
-                    mToggle=false;
-                    mRelativeLayout.setBackgroundColor(getResources().getColor(R.color.cBackgroundColor));
-                    mTextView.setText(getResources().getString(R.string.cRemind));
+                    mToggle = false;
+                    setStatus(R.color.cBackgroundColor, R.string.cRemind);
+                    edit.putBoolean("mToggle", mToggle);
+                    edit.commit();
 
                 }
 
@@ -74,17 +88,13 @@ public class MainActivity extends WearableActivity
         });
     }
 
-
-
-
-
-    private void initView()
+    private void setStatus(int mColor, int mText)
     {
-        mContainerView = (BoxInsetLayout) findViewById(R.id.container);
-        mTextView = (TextView) findViewById(R.id.text);
-        mSwitch = (DragSwitch) findViewById(R.id.sedentarySc);
-        mRelativeLayout = (RelativeLayout) findViewById(R.id.sedentaryBg);
+        mRelativeLayout.setBackgroundColor(getResources().getColor(mColor));
+        mTextView.setText(mText);
     }
+
+
 
     private void dayOfWeek()
     {
@@ -120,16 +130,11 @@ public class MainActivity extends WearableActivity
 
     private void setTime()
     {
-        long set1 = setClock(9);
-        long set2 = setClock(10);
-        long set3 = setClock(11);
-        long set4 = setClock(15);
-        long set5 = setClock(16);
-        sendBroadcast(set1);
-        sendBroadcast(set2);
-        sendBroadcast(set3);
-        sendBroadcast(set4);
-        sendBroadcast(set5);
+        sendBroadcast(setClock(9));
+//        sendBroadcast( setClock(10));
+//        sendBroadcast(setClock(11));
+//        sendBroadcast(setClock(15));
+//        sendBroadcast( setClock(16));
     }
 
     private long setClock(int mHour)
@@ -146,7 +151,7 @@ public class MainActivity extends WearableActivity
     {
         Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
         PendingIntent sender = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
-        AlarmManager manager=(AlarmManager)getSystemService(ALARM_SERVICE);
+        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
         manager.set(AlarmManager.RTC_WAKEUP, time, sender);
     }
 }
